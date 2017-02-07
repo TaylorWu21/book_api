@@ -1,0 +1,35 @@
+nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.home-page {
+  background: url('book.jpg');
+  height: 95vh;
+  background-size: cover;
+}
+
+.fa {
+  margin-right: 15px;
+}
+
+.falink:hover {
+  cursor: pointer;
+  color: grey;
+}
+
+.app-info {
+  padding-top: 50px;
+}
+
+
+/* BOOK PAGE CSS */
+
+.card-image img {
+  height: auto;
+  width: 200px;
+}
+
+.card-title {
+  text-shadow: 2px 2px 2px #000000;
+}
