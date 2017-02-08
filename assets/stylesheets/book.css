@@ -1,0 +1,8 @@
+.card-image img {
+  height: auto;
+  width: 200px;
+}
+
+.card-title {
+  text-shadow: 2px 2px 2px #000000;
+}
