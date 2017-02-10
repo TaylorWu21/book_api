@@ -21,7 +21,7 @@ $(document).ready(function() {
   });
 
   function displayBooks(books) {
-    $('.book_card').remove();
+    $('.collection-item').remove();
     const library = books.map( book => {
       if(book.volumeInfo.imageLinks && book.volumeInfo.categories) {
         return(`
