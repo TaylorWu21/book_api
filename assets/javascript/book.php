@@ -1,3 +1,7 @@
+<?php
+header("Content-type: application/javascript");
+?>
+
 $(document).ready(function() {
 
   $('#submit').click(function(e) {
