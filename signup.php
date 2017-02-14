@@ -1,4 +1,9 @@
-<?php echo "
+<?php
+
+include './partials/navbar.php';
+include './partials/footer.php';
+
+?>
 
 <html>
 <head>
@@ -6,10 +11,13 @@
   <link href='http://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel='stylesheet' href='FA/css/font-awesome.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>
-  <!-- <link rel='stylesheet' href='./assets/stylesheets/styles.css'> -->
+  <link rel='stylesheet' href='./assets/stylesheets/sign.css'>
   <title>Book Buddy</title>
 </head>
 <body>
+
+
+  <?php echo $navbar; ?>
 
   <h1 class='center'>Sign Up</h1>
   <div class='row'>
@@ -40,11 +48,11 @@
     </form>
   </div>
 
+  <?php echo $footer; ?>
+
   <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js'></script>
   <script type='text/javascript' src='./assets/javascript/book.js'></script>
-
+  <script type='text/javascript' src='./assets/javascript/javascript.php'></script>
 </body>
 </html>
-
-" ?>

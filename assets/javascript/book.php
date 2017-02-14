@@ -1,5 +1,5 @@
 <?php
-header("Content-type: application/javascript");
+  header("Content-type: application/javascript");
 ?>
 
 $(document).ready(function() {
