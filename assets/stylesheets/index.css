@@ -21,3 +21,8 @@ nav {
 .app-info {
   padding-top: 50px;
 }
+
+.github {
+  height: 250px;
+  width: auto;
+}

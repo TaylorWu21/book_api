@@ -1,8 +1,7 @@
 <?php
-
   $footer =
   "
-  <footer class='page-footer blue lighten-2'>
+  <footer class='page-footer blue'>
     <div class='footer-copyright'>
       <div class='container'>
         © 2017 Copyright Text
@@ -11,5 +10,4 @@
     </div>
   </footer>
   "
-
 ?>

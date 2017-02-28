@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include './partials/navbar.php';
 include './partials/footer.php';
 
@@ -12,7 +12,7 @@ include './partials/footer.php';
   <meta charset='utf-8'>
   <link href='http://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel='stylesheet' href='FA/css/font-awesome.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>
+  <link rel='stylesheet' href='./assets/materialize/css/materialize.css'>
   <link rel='stylesheet' href='./assets/stylesheets/index.css'>
   <title>Book Buddy</title>
 </head>
@@ -47,19 +47,21 @@ include './partials/footer.php';
     </div>
   </div>
 
-  <div class='row container app-info'>
+  <div class='row container'>
     <div class='col s12 m6 l6 center'>
-      <i class='fa falink fa-github fa-5x'></i>
+      <a href='https://github.com/TaylorWu21/book_api'>
+        <img class='github' src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png' alt='github kitty' />
+      </a>
     </div>
     <div class='col s12 m6 l6 center'>
-      <h4>Check out the github Repo</h4>
+      <h4 class='app-info'>Check out the github Repo</h4>
     </div>
   </div>
 
   <?php echo $footer; ?>
 
   <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js'></script>
-  <script type='text/javascript' src='./assets/javascript/javascript.php'></script>
+  <script src='./assets/materialize/js/materialize.js'></script>
+  <script type='text/javascript' src='./assets/javascript/javascript.js'></script>
 </body>
 </html>
