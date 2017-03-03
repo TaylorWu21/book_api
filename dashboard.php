@@ -57,6 +57,10 @@ for ($j = 0 ; $j < $rows ; ++$j) {
           <input type='hidden' name='book_id' value='$book_id' />
           <button type='submit' class='btn-floating btn-large waves-effect waves-light blue'><i class='material-icons'>supervisor_account</i></button>
         </form>
+        <form class='right' method='post' action='comments.php' style='margin: 10px;'>
+          <input type='hidden' name='book_id' value='$book_id' />
+          <button type='submit' class='btn-floating btn-large waves-effect waves-light light-blue'><i class='material-icons'>comment</i></button>
+        </form>
       </div>
     </li>" .$books;
 }
@@ -80,32 +84,32 @@ $conn->close();
 
     <?php echo $navbar; ?>
     <h1 class='center'>Welcome <?php echo $name; ?>!</h1>
-    <div class=''>
-      <div class='row container'>
-        <div class='col s12 m3'>
-          <img src='./assets/images/person.png' alt='its a dude' style='height: 200px;'/>
-          <h5><b>Email </b> <?php echo $email; ?></h5>
-          <h5><b>Name </b> <?php echo $name; ?></h5>
-          <h5><b>Phone </b> <?php echo $phone; ?></h5>
-          <form method='post' action='editUser.php'>
-            <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button>
-          </form>
-          <form method='post' action='viewUsers.php'>
-            <input class='btn' type='submit' value="See Other's Library!" />
-          </form>
-          <form method='post' action='rentedBooks.php'>
-            <input class='btn blue-grey' type='submit' value="See Your Rented Books" />
-          </form>
-        </div>
-        <div class='col s12 m9'>
-          <h4>Here is your Library!</h4>
-          <ul class='collection'>
-            <?php echo $books; ?>
-          <ul>
-        </div>
+    <div class='row container'>
+      <div class='col s12 m3'>
+        <img src='./assets/images/person.png' alt='its a dude' style='height: 200px;'/>
+        <h5><b>Email </b> <?php echo $email; ?></h5>
+        <h5><b>Name </b> <?php echo $name; ?></h5>
+        <h5><b>Phone </b> <?php echo $phone; ?></h5>
+        <form method='post' action='editUser.php'>
+          <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button>
+        </form>
+        <form method='post' action='viewUsers.php'>
+          <input class='btn' type='submit' value="See Other's Library!" />
+        </form>
+        <form method='post' action='rentedBooks.php'>
+          <input class='btn blue-grey' type='submit' value="See Your Rented Books" />
+        </form>
+        <form method='post' action='borrowedBooks.php'>
+          <input class='btn blue-grey' type='submit' value="See books you've borrowed" />
+        </form>
+      </div>
+      <div class='col s12 m9'>
+        <h4>Here is your Library!</h4>
+        <ul class='collection'>
+          <?php echo $books; ?>
+        <ul>
       </div>
     </div>
-    <a href='bookSearch.php' class='btn-floating btn-large waves-effect waves-light green add-book-button'><i class='material-icons'>library_add</i></a>
     <?php echo $footer; ?>
 
   </body>

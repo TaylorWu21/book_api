@@ -16,7 +16,7 @@ $rentedBooks = '';
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
-$query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id AND rents.borrower_id = users.user_id AND rents.lender_id='$user_id'";
+$query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id AND books.user_id = users.user_id AND rents.borrower_id='$user_id'";
 $result = $conn->query($query);
 if(!$result) die($conn->error);
 $rows = $result->num_rows;
@@ -32,9 +32,9 @@ for ($j = 0 ; $j < $rows ; ++$j) {
   $image_link = $row['image_link'];
   $category = $row['category'];
   $isbn = $row['isbn'];
-  $borrower_email = $row['email'];
-  $borrower_name = $row['name'];
-  $borrower_phone = $row['phone'];
+  $lender_email = $row['email'];
+  $lender_name = $row['name'];
+  $lender_phone = $row['phone'];
 
   $rentedBooks =
   "<li class='collection-item avatar row'>
@@ -56,14 +56,6 @@ for ($j = 0 ; $j < $rows ; ++$j) {
         <b>Description: </b>$description
       </p>
       <a class='modal-trigger btn-floating btn-large waves-effect waves-light right blue' style='margin: 10px;' href='#$rent_id'><i class='material-icons'>perm_identity</i></a>
-      <form class='right' method='get' action='editRent.php' style='margin: 10px;'>
-        <input type='hidden' name='rent_id' value='$rent_id' />
-        <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button>
-      </form>
-      <form class='right' method='post' action='deleteRent.php' style='margin: 10px;'>
-        <input type='hidden' name='rent_id' value='$rent_id' />
-        <button type='submit' class='btn-floating btn-large waves-effect waves-light red'><i class='material-icons'>delete</i></button>
-      </form>
       <form class='right' method='post' action='comments.php' style='margin: 10px;'>
         <input type='hidden' name='book_id' value='$book_id' />
         <button type='submit' class='btn-floating btn-large waves-effect waves-light light-blue'><i class='material-icons'>comment</i></button>
@@ -79,9 +71,10 @@ for ($j = 0 ; $j < $rows ; ++$j) {
           <img src='./assets/images/person.png' style='height:200px;'/>
         </div>
         <div class='col s12 m6'>
-          <h5><b>Email </b> <a href='mailto:$borrower_email'>$borrower_email</a></h5>
-          <h5><b>Name </b> $borrower_name</h5>
-          <h5><b>Phone </b> <a href='tel:$borrower_phone'>$borrower_phone</a></h5>
+          <h3>Lender's Information</h3>
+          <h5><b>Email </b> <a href='mailto:$lender_email'>$lender_email</a></h5>
+          <h5><b>Name </b> $lender_name</h5>
+          <h5><b>Phone </b> <a href='tel:$lender_phone'>$lender_phone</a></h5>
         </div>
       </div>
     </div>

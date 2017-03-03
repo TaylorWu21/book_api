@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include './partials/navbar.php';
 include './partials/footer.php';

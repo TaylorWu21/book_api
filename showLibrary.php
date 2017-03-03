@@ -65,6 +65,10 @@ if(isset($_POST['user_id'])) {
             <br />
             <b>Description: </b>$description
           </p>
+          <form class='right' method='post' action='comments.php' style='margin: 10px;'>
+            <input type='hidden' name='book_id' value='$book_id' />
+            <button type='submit' class='btn-floating btn-large waves-effect waves-light light-blue'><i class='material-icons'>comment</i></button>
+          </form>
         </div>
       </li>" .$books;
   }
