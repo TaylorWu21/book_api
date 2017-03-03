@@ -37,9 +37,9 @@ for ($j = 0 ; $j < $rows ; ++$j) {
           <span class='title'>$name</span>
         </div>
         <p>
-          <b>Email: </b>$email
+          <b>Email: </b><a href='mailto:$email'>$email</a>
           <br />
-          <b>Phone: </b>$phone
+          <b>Phone: </b><a href='mailto:$phone'>$phone</a>
         </p>
         <form class='right' method='post' action='showLibrary.php'>
           <input type='hidden' name='user_id' value='$user_id' />

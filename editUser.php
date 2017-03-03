@@ -67,7 +67,8 @@ if(isset($_POST['email'])) {
         <label for='phone'>Phone Number</label>
       </div>
       <div class='center'>
-        <button id='submit' class='btn center' type='submit'>Sign Up</button>
+        <button id='submit' class='btn center' type='submit'>Update Profile</button>
+        <a href='dashboard.php' class='btn red'>Cancel</a>
       </div>
     </form>
   </div>

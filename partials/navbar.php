@@ -8,16 +8,14 @@
       <div class='home-page'>
         <nav class='blue'>
           <div class='nav-wrapper container'>
-            <a href='index.php' class='brand-logo'>Logo</a>
+            <a href='index.php' class='brand-logo'><img src='./assets/images/logo.png' alt='its the logo yo' style='height:65px;' /></a>
             <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
             <ul class='right hide-on-med-and-down'>
               <li><a href='dashboard.php'>Dashboard</a></li>
-              <li><a href='bookSearch.php'>Add Books</a></li>
               <li><a href='signout.php'>Sign Out</a></li>
             </ul>
             <ul class='side-nav' id='mobile-demo'>
               <li><a href='dashboard.php'>Dashboard</a></li>
-              <li><a href='bookSearch.php'>Add Books</a></li>
               <li><a href='signout.php'>Sign Out</a></li>
             </ul>
           </div>
@@ -30,7 +28,7 @@
       <div class='home-page'>
         <nav class='blue'>
           <div class='nav-wrapper container'>
-            <a href='index.php' class='brand-logo'>Logo</a>
+            <a href='index.php' class='brand-logo'><img src='./assets/images/logo.png' alt='its the logo yo' style='height:65px;' /></a>
             <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
             <ul class='right hide-on-med-and-down'>
               <li><a href='signup.php'>Sign Up</a></li>

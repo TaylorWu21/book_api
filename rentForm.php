@@ -95,7 +95,8 @@ if(isset($_POST['date'])) {
       </div>
       <input type='hidden' name='book_id' value=<?php echo $book_id; ?> />
       <div class='center'>
-        <input class='btn' type='submit' value='Rent Out Book!' required/>
+        <input class='btn' type='submit' value='Rent Out Book!' />
+        <a href='dashboard.php' class='btn red'>Cancel</a>
       </div>
     </form>
   </div>

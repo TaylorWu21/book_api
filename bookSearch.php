@@ -65,6 +65,7 @@ if(isset($_POST['isbn'])) {
       </div>
       <div class='center'>
         <button id='submit' class='btn center' type='submit'>Search</button>
+        <a href='dashboard.php' class='btn red'>Cancel</a>
       </div>
     </form>
   </div>

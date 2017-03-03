@@ -90,9 +90,9 @@ if(isset($_POST['user_id'])) {
       <div class='row container'>
         <div class='col s12 m3'>
           <img src='./assets/images/person.png' alt='its a dude' style='height: 200px;'/>
-          <h5><b>Email </b> <?php echo $email; ?></h5>
           <h5><b>Name </b> <?php echo $name; ?></h5>
-          <h5><b>Phone </b> <?php echo $phone; ?></h5>
+          <h5><b>Email </b> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></h5>
+          <h5><b>Phone </b> <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
         </div>
         <div class='col s12 m9'>
           <ul class='collection'>

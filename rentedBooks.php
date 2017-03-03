@@ -68,7 +68,7 @@ for ($j = 0 ; $j < $rows ; ++$j) {
       <div class='center'><h5><b>Return Date:</b> $return_date</h5></div>
     </div>
   </li>
-  <div id='$rent_id' class='modal modal-fixed-footer'>
+  <div id='$rent_id' class='modal'>
     <div class='modal-content'>
       <div class='row'>
         <div class='col s12 m6 center'>
@@ -100,7 +100,7 @@ $conn->close();
 <body>
 
   <?php echo $navbar; ?>
-
+  <main>
   <div class='container row'>
     <h1>Rented Books</h1>
 
@@ -109,6 +109,7 @@ $conn->close();
     <ul>
 
   </div>
+</main>
 
   <?php echo $footer; ?>
 

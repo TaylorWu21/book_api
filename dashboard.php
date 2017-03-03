@@ -73,6 +73,7 @@ $conn->close();
     <link href='http://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
     <link rel='stylesheet' href='FA/css/font-awesome.min.css'>
     <link rel='stylesheet' href='./assets/materialize/css/materialize.css'>
+    <link rel='stylesheet' href='./assets/stylesheets/book.css'>
     <title>Book Buddy</title>
   </head>
   <body>
@@ -87,7 +88,7 @@ $conn->close();
           <h5><b>Name </b> <?php echo $name; ?></h5>
           <h5><b>Phone </b> <?php echo $phone; ?></h5>
           <form method='post' action='editUser.php'>
-            <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button> 
+            <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button>
           </form>
           <form method='post' action='viewUsers.php'>
             <input class='btn' type='submit' value="See Other's Library!" />
@@ -104,6 +105,7 @@ $conn->close();
         </div>
       </div>
     </div>
+    <a href='bookSearch.php' class='btn-floating btn-large waves-effect waves-light green add-book-button'><i class='material-icons'>library_add</i></a>
     <?php echo $footer; ?>
 
   </body>
