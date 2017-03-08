@@ -12,7 +12,8 @@ $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
-$rentedBooks = '';
+$borrowedBooks = '';
+$noBooks = '';
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
@@ -20,6 +21,11 @@ $query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id 
 $result = $conn->query($query);
 if(!$result) die($conn->error);
 $rows = $result->num_rows;
+if($rows == 0) {
+  $noBooks = "
+    <h4 class='title'>You Have No Borrowed Books</h4>
+  ";
+}
 for ($j = 0 ; $j < $rows ; ++$j) {
   $result->data_seek($j);
   $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -36,7 +42,7 @@ for ($j = 0 ; $j < $rows ; ++$j) {
   $lender_name = $row['name'];
   $lender_phone = $row['phone'];
 
-  $rentedBooks =
+  $borrowedBooks .=
   "<li class='collection-item avatar row'>
     <div class='col s12 m2 center'>
       <img src=$image_link alt='' style='{height: 100px; width: auto;}' />
@@ -60,6 +66,10 @@ for ($j = 0 ; $j < $rows ; ++$j) {
         <input type='hidden' name='book_id' value='$book_id' />
         <button type='submit' class='btn-floating btn-large waves-effect waves-light light-blue'><i class='material-icons'>comment</i></button>
       </form>
+      <form class='right' method='post' action='borrowedBooks.php' style='margin: 10px;'>
+        <input type='hidden' name='favorite_book_id' value='$book_id' />
+        <button type='submit' class='btn-floating btn-large waves-effect waves-light pink'><i class='material-icons'>favorite</i></button>
+      </form>
       <br>
       <div class='center'><h5><b>Return Date:</b> $return_date</h5></div>
     </div>
@@ -81,9 +91,20 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     <div class='modal-footer'>
       <a href='#!' class='modal-action modal-close waves-effect waves-red btn-flat'>Close</a>
     </div>
-  </div>" .$rentedBooks;
+  </div>";
 }
 $conn->close();
+
+if(isset($_POST['favorite_book_id'])) {
+  $favorite_book_id = $_POST['favorite_book_id'];
+  $conn2 = new mysqli($hn, $un, $pw, $db);
+  if($conn2->connect_error) die($conn2->connect_error);
+  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
+  $result2 = $conn2->query($query);
+  if(!$result2) die($conn2->error);
+  $conn2->close();
+}
+
 ?>
 
 <html>
@@ -99,10 +120,11 @@ $conn->close();
   <?php echo $navbar; ?>
   <main>
   <div class='container row'>
-    <h1>Rented Books</h1>
+    <h1>Books You've Borrowed</h1>
 
     <ul class='collection'>
-      <?php echo $rentedBooks; ?>
+      <?php echo $noBooks ?>
+      <?php echo $borrowedBooks; ?>
     <ul>
 
   </div>

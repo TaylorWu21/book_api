@@ -13,11 +13,13 @@
             <ul class='right hide-on-med-and-down'>
               <li><a href='dashboard.php'>Dashboard</a></li>
               <li><a href='bookSearch.php'>Add Books</a></li>
+              <li><a href='favorites.php'>Favorites</a></li>
               <li><a href='signout.php'>Sign Out</a></li>
             </ul>
             <ul class='side-nav' id='mobile-demo'>
               <li><a href='dashboard.php'>Dashboard</a></li>
               <li><a href='bookSearch.php'>Add Books</a></li>
+              <li><a href='favorites.php'>Favorites</a></li>
               <li><a href='signout.php'>Sign Out</a></li>
             </ul>
           </div>

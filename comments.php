@@ -28,6 +28,7 @@ $book_info = '';
 $comments = '';
 $book_title = '';
 $book_username = '';
+$book_user_id = '';
 
 if(isset($_POST['book_id'])) {
   $book_id = $_POST['book_id'];
@@ -41,6 +42,7 @@ if(isset($_POST['book_id'])) {
   for ($j = 0 ; $j < $rows ; ++$j) {
     $result->data_seek($j);
     $row = $result->fetch_array(MYSQLI_ASSOC);
+    $book_user_id = $row['user_id'];
     $book_title = $row['title'];
     $book_username = $row['name'];
     $book_id = $row['book_id'];
@@ -62,6 +64,13 @@ if(isset($_POST['book_id'])) {
   if(!$result) die($conn->error);
   $rows = $result->num_rows;
   $books = '';
+  if($rows == 0) {
+    $comments = "
+      <li class='collection-item'>
+        <h4 class='title'>No Comments Yet!</h4>
+      </li>
+    ";
+  }
   for ($j = 0 ; $j < $rows ; ++$j) {
     $result->data_seek($j);
     $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -137,6 +146,10 @@ if(isset($_POST['book_id'])) {
 
     <div class='col s12 m3'>
       <?php echo $book_info; ?>
+      <form method='post' action='showLibrary.php'>
+        <input type='hidden' name='user_id' value=<?php echo $book_user_id; ?> />
+        <input type='submit' class='btn' value=<?php echo "Back to $book_username's Library"; ?> />
+      </form>
     </div>
 
     <div class='col s12 m9'>

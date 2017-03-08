@@ -13,6 +13,7 @@ $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
 $rentedBooks = '';
+$noBooks = '';
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
@@ -20,6 +21,11 @@ $query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id 
 $result = $conn->query($query);
 if(!$result) die($conn->error);
 $rows = $result->num_rows;
+if($rows == 0) {
+  $noBooks = "
+    <h4 class='title'>No Books Rented</h4>
+  ";
+}
 for ($j = 0 ; $j < $rows ; ++$j) {
   $result->data_seek($j);
   $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -109,6 +115,7 @@ $conn->close();
     <h1>Rented Books</h1>
 
     <ul class='collection'>
+      <?php echo $noBooks; ?>
       <?php echo $rentedBooks; ?>
     <ul>
 

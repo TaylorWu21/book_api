@@ -7,6 +7,8 @@ include './partials/footer.php';
 
 require_once 'dbinfo.php';
 
+$user_id = $_SESSION['user_id'];
+
 $email = '';
 $name = '';
 $phone = '';
@@ -69,10 +71,25 @@ if(isset($_POST['user_id'])) {
             <input type='hidden' name='book_id' value='$book_id' />
             <button type='submit' class='btn-floating btn-large waves-effect waves-light light-blue'><i class='material-icons'>comment</i></button>
           </form>
+          <form class='right' method='post' action='showLibrary.php' style='margin: 10px;'>
+            <input type='hidden' name='favorite_book_id' value='$book_id' />
+            <button type='submit' class='btn-floating btn-large waves-effect waves-light pink'><i class='material-icons'>favorite</i></button>
+          </form>
         </div>
       </li>" .$books;
   }
   $conn2->close();
+}
+
+if(isset($_POST['favorite_book_id'])) {
+  $favorite_book_id = $_POST['favorite_book_id'];
+  $conn2 = new mysqli($hn, $un, $pw, $db);
+  if($conn2->connect_error) die($conn2->connect_error);
+  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
+  $result2 = $conn2->query($query);
+  if(!$result2) die($conn2->error);
+  $conn2->close();
+  header("Location: favorites.php");
 }
 
 ?>
@@ -97,6 +114,8 @@ if(isset($_POST['user_id'])) {
           <h5><b>Name </b> <?php echo $name; ?></h5>
           <h5><b>Email </b> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></h5>
           <h5><b>Phone </b> <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
+          <br>
+          <a class='btn' href='viewUsers.php'>Back to View Users</a>
         </div>
         <div class='col s12 m9'>
           <ul class='collection'>
