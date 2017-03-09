@@ -21,7 +21,7 @@ if(isset($_POST['email'])) {
   $email = sanitize($_POST['email']);
   $name = sanitize($_POST['name']);
   $phone = sanitize($_POST['phone']);
-  // set new session Infp
+  // set new session Info
   $_SESSION['email'] = $email;
   $_SESSION['name'] = $name;
   $_SESSION['phone'] = $phone;
@@ -77,6 +77,7 @@ if(isset($_POST['email'])) {
     <form method='post' action='deleteUser.php'>
       <input type='hidden' name='user_id' value=<?php echo $user_id; ?> />
       <button class='btn red' type='submit'>DELETE ACCOUNT</button>
+      <a class='btn blue' href='editPassword.php'>Change Password</a>
     </form>
   </div>
 

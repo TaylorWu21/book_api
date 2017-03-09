@@ -103,7 +103,7 @@ $conn->close();
         <h5><b>Name </b> <?php echo $name; ?></h5>
         <h5><b>Phone </b> <?php echo $phone; ?></h5>
         <form method='post' action='editUser.php'>
-          <button type='submit' class='btn-floating btn-large waves-effect waves-light orange'><i class='material-icons'>mode_edit</i></button>
+          <button type='submit' class='btn orange'>Edit Profile</button>
         </form>
         <form method='post' action='viewUsers.php'>
           <input class='btn' type='submit' value="See Other's Library!" />
