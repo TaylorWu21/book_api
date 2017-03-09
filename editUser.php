@@ -40,7 +40,6 @@ if(isset($_POST['email'])) {
   <link href='http://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel='stylesheet' href='FA/css/font-awesome.min.css'>
   <link rel='stylesheet' href='./assets/materialize/css/materialize.css'>
-  <link rel='stylesheet' href='./assets/stylesheets/sign.css'>
   <title>Book Buddy</title>
 </head>
 <body>
@@ -70,12 +69,14 @@ if(isset($_POST['email'])) {
       </div>
       <div class='center'>
         <button id='submit' class='btn center' type='submit'>Update Profile</button>
-        <a href='dashboard.php' class='btn red'>Cancel</a>
+        <a href='dashboard.php' class='btn orange'>Cancel</a>
       </div>
-      <form>
-        <input type='hidden' name='user_id' value=<?php echo $user_id; ?> />
-        <button class='btn ' type='submit'>DELETE ACCOUNT</button>
-      </form>
+    </form>
+  </div>
+  <div class='center'>
+    <form method='post' action='deleteUser.php'>
+      <input type='hidden' name='user_id' value=<?php echo $user_id; ?> />
+      <button class='btn red' type='submit'>DELETE ACCOUNT</button>
     </form>
   </div>
 
