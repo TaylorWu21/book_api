@@ -4,6 +4,8 @@ include './partials/navbar.php';
 include './partials/footer.php';
 require_once 'dbinfo.php';
 
+require_once 'sanitize.php';
+
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 
@@ -50,16 +52,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	} else {
 		$failedLogin = "failed to login";
 	}
-}
-
-//sanitization functions
-function mysql_entities_fix_string($conn, $string){
-	return htmlentities(mysql_fix_string($conn, $string));
-}
-
-function mysql_fix_string($conn, $string){
-	if(get_magic_quotes_gpc()) $string = stripslashes($string);
-	return $conn->real_escape_string($string);
 }
 
 ?>

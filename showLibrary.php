@@ -9,16 +9,19 @@ require_once 'dbinfo.php';
 
 $user_id = $_SESSION['user_id'];
 
+require_once 'addFavorites.php';
+
 $email = '';
 $name = '';
 $phone = '';
 $books = '';
 
+// gets user info
 if(isset($_POST['user_id'])) {
-  $user_id = $_POST['user_id'];
+  $library_user_id = $_POST['user_id'];
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
-  $query = "SELECT * FROM users WHERE user_id='$user_id'";
+  $query = "SELECT * FROM users WHERE user_id='$library_user_id'";
   $result = $conn->query($query);
   if(!$result) die($conn->error);
   $rows = $result->num_rows;
@@ -31,9 +34,10 @@ if(isset($_POST['user_id'])) {
   }
   $conn->close();
 
+  // gets all the books of the user
   $conn2 = new mysqli($hn, $un, $pw, $db);
   if($conn2->connect_error) die($conn2->connect_error);
-  $query2 = "SELECT * FROM books WHERE user_id='$user_id'";
+  $query2 = "SELECT * FROM books WHERE user_id='$library_user_id'";
   $result2 = $conn2->query($query2);
   if(!$result2) die($conn2->error);
   $rows = $result2->num_rows;
@@ -41,14 +45,14 @@ if(isset($_POST['user_id'])) {
     $result2->data_seek($j);
     $row = $result2->fetch_array(MYSQLI_ASSOC);
     $book_id = $row['book_id'];
-    $user_id = $row['user_id'];
+    $library_user_id = $row['user_id'];
     $title = $row['title'];
     $author = $row['author'];
     $description = $row['description'];
     $image_link = $row['image_link'];
     $category = $row['category'];
     $isbn = $row['isbn'];
-    $books =
+    $books .=
       "<li class='collection-item avatar row'>
         <div class='col s12 m2 center'>
           <img src=$image_link alt='' style='{height: 100px; width: auto;}' />
@@ -76,20 +80,9 @@ if(isset($_POST['user_id'])) {
             <button type='submit' class='btn-floating btn-large waves-effect waves-light pink'><i class='material-icons'>favorite</i></button>
           </form>
         </div>
-      </li>" .$books;
+      </li>";
   }
   $conn2->close();
-}
-
-if(isset($_POST['favorite_book_id'])) {
-  $favorite_book_id = $_POST['favorite_book_id'];
-  $conn2 = new mysqli($hn, $un, $pw, $db);
-  if($conn2->connect_error) die($conn2->connect_error);
-  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
-  $result2 = $conn2->query($query);
-  if(!$result2) die($conn2->error);
-  $conn2->close();
-  header("Location: favorites.php");
 }
 
 ?>

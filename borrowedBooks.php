@@ -7,14 +7,18 @@ include './partials/footer.php';
 
 require_once 'dbinfo.php';
 
+
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+require_once 'addFavorites.php';
+
 $borrowedBooks = '';
 $noBooks = '';
 
+// Get Borrowed Books
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 $query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id AND books.user_id = users.user_id AND rents.borrower_id='$user_id'";
@@ -94,16 +98,6 @@ for ($j = 0 ; $j < $rows ; ++$j) {
   </div>";
 }
 $conn->close();
-
-if(isset($_POST['favorite_book_id'])) {
-  $favorite_book_id = $_POST['favorite_book_id'];
-  $conn2 = new mysqli($hn, $un, $pw, $db);
-  if($conn2->connect_error) die($conn2->connect_error);
-  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
-  $result2 = $conn2->query($query);
-  if(!$result2) die($conn2->error);
-  $conn2->close();
-}
 
 ?>
 

@@ -5,11 +5,15 @@ include './partials/navbar.php';
 include './partials/footer.php';
 
 require_once 'dbinfo.php';
+
+require_once 'sanitize';
+
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+// user object constructor
 class User {
   public $user_id, $name;
 
@@ -23,6 +27,7 @@ $users = array();
 $user_option = '';
 $book_id = '';
 
+// get all the users excepted the one thats logged in
 if(isset($_POST['book_id'])) {
   $book_id = $_POST['book_id'];
   $conn = new mysqli($hn, $un, $pw, $db);
@@ -47,10 +52,11 @@ if(isset($_POST['book_id'])) {
   $conn->close();
 }
 
+// save rented book
 if(isset($_POST['date'])) {
-  $book_id = $_POST['book_id'];
-  $borrower_id = $_POST['renter_id'];
-  $return_date = $_POST['date'];
+  $book_id = sanitize($_POST['book_id']);
+  $borrower_id = sanitize($_POST['renter_id']);
+  $return_date = sanitize($_POST['date']);
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
   $query = "INSERT INTO rents(book_id, lender_id, borrower_id, return_date)

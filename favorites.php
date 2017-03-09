@@ -14,6 +14,7 @@ $phone = $_SESSION['phone'];
 
 $favorite_title = '<h4>Favorited Books</h4>';
 
+// Get all the favorited books of the user
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 $query = "SELECT * FROM books, favorites WHERE books.book_id=favorites.book_id AND favorites.user_id='$user_id'";
@@ -69,17 +70,6 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     </li>" .$books;
 }
 $conn->close();
-
-if(isset($_POST['favorite_book_id'])) {
-  $favorite_book_id = $_POST['favorite_book_id'];
-  $conn2 = new mysqli($hn, $un, $pw, $db);
-  if($conn2->connect_error) die($conn2->connect_error);
-  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
-  $result2 = $conn2->query($query);
-  if(!$result2) die($conn2->error);
-  $conn2->close();
-}
-
 
 ?>
 

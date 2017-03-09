@@ -6,6 +6,8 @@ include './partials/navbar.php';
 include './partials/footer.php';
 require_once 'dbinfo.php';
 
+require_once 'sanitize.php';
+
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
@@ -16,9 +18,9 @@ if($conn->connect_error) die($conn->connect_error);
 
 if(isset($_POST['email'])) {
   //Get updated info
-  $email = $_POST['email'];
-  $name = $_POST['name'];
-  $phone = $_POST['phone'];
+  $email = sanitize($_POST['email']);
+  $name = sanitize($_POST['name']);
+  $phone = sanitize($_POST['phone']);
   // set new session Infp
   $_SESSION['email'] = $email;
   $_SESSION['name'] = $name;
@@ -70,6 +72,10 @@ if(isset($_POST['email'])) {
         <button id='submit' class='btn center' type='submit'>Update Profile</button>
         <a href='dashboard.php' class='btn red'>Cancel</a>
       </div>
+      <form>
+        <input type='hidden' name='user_id' value=<?php echo $user_id; ?> />
+        <button class='btn ' type='submit'>DELETE ACCOUNT</button>
+      </form>
     </form>
   </div>
 

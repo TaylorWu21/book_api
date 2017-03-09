@@ -7,28 +7,25 @@ include './partials/footer.php';
 
 require_once 'dbinfo.php';
 
+require_once 'sanitize.php';
+
 $bookAdded = '';
 if(isset($_POST['isbn'])) {
+  // Save Book to DB
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
-  $user_id = $_SESSION['user_id'];
-  $title = $_POST['title'];
-  $author = $_POST['author'];
-  $description = $_POST['description'];
-  $category = $_POST['category'];
-  $image_link = $_POST['image_link'];
-  $isbn = $_POST['isbn'];
+  $user_id = sanitize($_SESSION['user_id']);
+  $title = sanitize($_POST['title']);
+  $author = sanitize($_POST['author']);
+  $description = sanitize($_POST['description']);
+  $category = sanitize($_POST['category']);
+  $image_link = sanitize($_POST['image_link']);
+  $isbn = sanitize($_POST['isbn']);
   $query = "INSERT INTO books(user_id, title, author, description, image_link, category, isbn)
             VALUES('$user_id', '$title', '$author', '$description', '$image_link', '$category', '$isbn')";
   $result = $conn->query($query);
   $conn->close();
   $bookAdded = "Added '$title' to Library!";
-  // echo 'isbn:'.$_POST['isbn']. '<br>';
-  // echo 'title:'.$_POST['title']. '<br>';
-  // echo 'author: '.$_POST['author']. '<br>';
-  // echo 'description:'.$_POST['description']. '<br>';
-  // echo 'category:'.$_POST['category']. '<br>';
-  // echo 'image link:' .$_POST['image_link']. '<br>';
 }
 
 ?>
@@ -75,7 +72,6 @@ if(isset($_POST['isbn'])) {
 
   <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
   <script src='./assets/materialize/js/materialize.js'></script>
-  <!-- <script type='text/javascript' src='./assets/javascript/book.php'></script> -->
   <script>
   $(document).ready(function() {
 

@@ -7,6 +7,8 @@ include './partials/footer.php';
 
 require_once 'dbinfo.php';
 
+require_once 'sanitize.php';
+
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
@@ -14,9 +16,10 @@ $phone = $_SESSION['phone'];
 
 $book_id = '';
 
+// Save comment to db
 if(isset($_POST['comment'])) {
-  $comment = $_POST['comment'];
-  $book_id = $_POST['book_id'];
+  $comment = sanitize($_POST['comment']);
+  $book_id = sanitize($_POST['book_id']);
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
   $query = "INSERT INTO comments(user_id, book_id, comment) VALUES('$user_id', '$book_id', '$comment')";
@@ -30,6 +33,7 @@ $book_title = '';
 $book_username = '';
 $book_user_id = '';
 
+// Get user info of book
 if(isset($_POST['book_id'])) {
   $book_id = $_POST['book_id'];
   $conn1 = new mysqli($hn, $un, $pw, $db);
@@ -56,7 +60,7 @@ if(isset($_POST['book_id'])) {
     ";
   }
   $conn1->close();
-
+  // Get comments for book
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
   $query = "SELECT * FROM books, comments, users WHERE books.book_id=comments.book_id AND comments.user_id=users.user_id AND books.book_id='$book_id'";

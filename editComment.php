@@ -6,14 +6,15 @@ include './partials/navbar.php';
 include './partials/footer.php';
 require_once 'dbinfo.php';
 
+require_once 'sanitize.php';
+
 $comment = '';
 $comment_id = '';
 
 
 if(isset($_POST['comment'])) {
-  $comment_id = $_POST['comment_id'];
-  $comment = $_POST['comment'];
-
+  $comment_id = sanitize($_POST['comment_id']);
+  $comment = sanitize($_POST['comment']);
   $conn = new mysqli($hn, $un, $pw, $db);
   if($conn->connect_error) die($conn->connect_error);
   echo 'fuck'.$comment_id;

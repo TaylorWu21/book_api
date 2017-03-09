@@ -12,6 +12,7 @@ $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+// Get all the users that is not the one logged in
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 $query = "SELECT * FROM users WHERE user_id!='$user_id'";

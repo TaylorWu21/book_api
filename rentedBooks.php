@@ -15,6 +15,7 @@ $phone = $_SESSION['phone'];
 $rentedBooks = '';
 $noBooks = '';
 
+// show books that the user has rented out to others
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 $query = "SELECT * FROM users, rents, books WHERE rents.book_id = books.book_id AND rents.borrower_id = users.user_id AND rents.lender_id='$user_id'";

@@ -4,7 +4,10 @@ require_once 'checkSession.php';
 
 include './partials/navbar.php';
 include './partials/footer.php';
+
 require_once 'dbinfo.php';
+
+require_once 'sanitize.php';
 
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];
@@ -36,9 +39,9 @@ if(isset($_GET['rent_id'])) {
 }
 
 if(isset($_POST['rent_id'])) {
-  $updated_rent_id = $_POST['rent_id'];
-  $updated_borrower_id = $_POST['borrower_id'];
-  $updated_return_date = $_POST['return_date'];
+  $updated_rent_id = sanitize($_POST['rent_id']);
+  $updated_borrower_id = sanitize($_POST['borrower_id']);
+  $updated_return_date = sanitize($_POST['return_date']);
   $conn3 = new mysqli($hn, $un, $pw, $db);
   if($conn3->connect_error) die($conn3->connect_error);
   $query3 = "UPDATE rents SET borrower_id='$updated_borrower_id', return_date='$updated_return_date' WHERE rent_id='$updated_rent_id'";

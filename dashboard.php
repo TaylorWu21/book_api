@@ -12,8 +12,11 @@ $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 $phone = $_SESSION['phone'];
 
+require_once 'addFavorites.php';
+
 $library = "<h4>Here's Your Library</h4>";
 
+//Get all books of user
 $conn = new mysqli($hn, $un, $pw, $db);
 if($conn->connect_error) die($conn->connect_error);
 $query = "SELECT * FROM books WHERE user_id='$user_id'";
@@ -77,17 +80,6 @@ for ($j = 0 ; $j < $rows ; ++$j) {
     </li>" .$books;
 }
 $conn->close();
-
-if(isset($_POST['favorite_book_id'])) {
-  $favorite_book_id = $_POST['favorite_book_id'];
-  $conn2 = new mysqli($hn, $un, $pw, $db);
-  if($conn2->connect_error) die($conn2->connect_error);
-  $query = "INSERT INTO favorites(user_id, book_id, favorite) VALUES('$user_id', '$favorite_book_id', '1')";
-  $result2 = $conn2->query($query);
-  if(!$result2) die($conn2->error);
-  $conn2->close();
-}
-
 
 ?>
 
