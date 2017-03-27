@@ -6,7 +6,7 @@ include './partials/footer.php';
 
 require_once 'dbinfo.php';
 
-require_once 'sanitize';
+require_once 'sanitize.php';
 
 $name = $_SESSION['name'];
 $user_id = $_SESSION['user_id'];

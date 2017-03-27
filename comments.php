@@ -167,7 +167,7 @@ if(isset($_POST['book_id'])) {
         <form class='row' method='post' action='comments.php'>
           <div class="input-field col s12">
             <textarea id="textarea1" class="materialize-textarea" name='comment'></textarea>
-            <label for="textarea1">Textarea</label>
+            <label for="textarea1">Comment</label>
           </div>
           <input type='hidden' name='book_id' value=<?php echo $book_id; ?> />
           </div>
