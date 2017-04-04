@@ -1,0 +1,11 @@
+{
+  "name": "Book Buddy",
+  "description": "This is a very cool package!",
+  "version": "1.0.0",
+  "type": "library",
+  "keywords": ["logging", "cool", "awesome"],
+  "homepage": "http://jolicode.com",
+  "require": {
+    "monolog/monolog": "1.0.*"
+  }
+}
